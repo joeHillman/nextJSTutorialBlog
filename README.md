@@ -31,3 +31,44 @@ This is a starter template for [Learn Next.js](https://nextjs.org/learn).
 * * https://nextjs.org/learn/basics/assets-metadata-css/styling-tips
 
 ## Pre-rendering / Data Fetching
+* Two forms - Static (w and w/o data) / Server Side Gen
+* getStaticProps
+* HTML generated in advance for every page, but both methods have different purposes.
+* When a page is loaded by the browser it is hydrated and built with the minimal JS needed.
+* * Prerendered content displayed.
+* * Hydrated with initialized components, app becomes interactive
+* * Note: Interactive components like Link will be active after JS loads.
+
+Important: You can choose per page, static or SS for a hybrid app approach.
+
+### Static Gen
+* https://nextjs.org/learn/basics/data-fetching/with-data
+* Prerenders at build time and reused on each request.
+* Things that won't change much, if they do a rebuild is needed.
+* Recommended for as much as possible due to speed of loading, caching.
+* Can be done with and without data.
+* No data - Everything gen at build time for production.
+* With data - Fetch the data at build time, send the props to the page.
+* * getStaticProps - Runs at build time in production
+* * * only runs on the server, isn't included in bundle code
+* * in devMode the above runs on each request.
+
+```js
+// this looks to be akin to a graphQL page query
+export async function getStaticProps() {
+  const allPostsData = getSortedPostsData()
+  return {
+    props: {
+      // can be passed to the home component as a prop
+      allPostsData
+    }
+  }
+}```
+
+* * If you can pre render in advance of a page request, do this!
+
+### Server Side Gen
+* Pre rendered on each request.
+
+* * If you cannot pre render in advance of a page request, do this!
+* * Alternatively, you can update frequently updating data on the client.
