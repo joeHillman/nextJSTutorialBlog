@@ -82,3 +82,19 @@ export async function getStaticProps() {
 * If fetching on the client side, give this React hook a look.
 * https://nextjs.org/learn/basics/data-fetching/request-time
 * https://swr.vercel.app/
+
+
+## Dynamic Routes
+* Use getStaticPaths alongside getStaticProps
+* Building out paths like
+
+```js
+/posts/[id]
+```
+
+* Pages beginning with this pattern [...] are dynamic routes in NextJS.
+* There are subleties with getStaticPaths that must be dealt with correctly.
+* https://nextjs.org/learn/basics/dynamic-routes/implement-getstaticpaths
+
+* Pick back up here...
+* https://nextjs.org/learn/basics/dynamic-routes/render-markdown
