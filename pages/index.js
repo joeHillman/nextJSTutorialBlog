@@ -16,6 +16,9 @@ export async function getStaticProps() {
   }
 }
 
+// serverSideRendering
+// getServerSideProps(context){reutrn {props: {}}}
+
 export default function Home({ allPostsData }) {
   return (
     <Layout home>

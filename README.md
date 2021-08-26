@@ -63,12 +63,22 @@ export async function getStaticProps() {
       allPostsData
     }
   }
-}```
+}
+```
 
 * * If you can pre render in advance of a page request, do this!
 
 ### Server Side Gen
 * Pre rendered on each request.
+* Uses getServerSideProps(context){reutrn {props: {}}}
 
 * * If you cannot pre render in advance of a page request, do this!
 * * Alternatively, you can update frequently updating data on the client.
+
+### Client Side Rendering
+* No need to prerender
+* Generate parts that don't require external data.
+* * On load, fetch external data, fill in the gaps.
+* If fetching on the client side, give this React hook a look.
+* https://nextjs.org/learn/basics/data-fetching/request-time
+* https://swr.vercel.app/
