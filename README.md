@@ -89,12 +89,41 @@ export async function getStaticProps() {
 * Building out paths like
 
 ```js
-/posts/[id]
+/posts/[[...]id]
+```
+
+* Catch all routes...
+* If using the 3 dots preceeding the ID, it's functioning as a glob pattern.
+* * /posts/a/b/c/
+* * Params value will be an array 
+```js
+  id: ['a', 'b', 'c']
+```
+
+* Ultimately you'll have a navigation that results in a list of...
+
+```js
+  <Link href={`/posts/${id}`}>
+    <a>{title}</a>
+  </Link>
 ```
 
 * Pages beginning with this pattern [...] are dynamic routes in NextJS.
 * There are subleties with getStaticPaths that must be dealt with correctly.
 * https://nextjs.org/learn/basics/dynamic-routes/implement-getstaticpaths
 
-* Pick back up here...
-* https://nextjs.org/learn/basics/dynamic-routes/render-markdown
+* You could also fetch from an external endpoint.
+* https://nextjs.org/learn/basics/dynamic-routes/dynamic-routes-details
+* Like getStaticProps, getStaticPaths runs every request in dev, only at build time in prod.
+
+* There's a next JS Router.
+* Custom 404 page. pages/404.js
+
+### Rendering Markdown
+* Using remark and remark html, you can look up these packages if there are questions.
+* https://github.com/remarkjs/remark
+* Date FNS we've used before, it is handy.
+
+
+### Pick back up here
+* https://nextjs.org/learn/basics/api-routes

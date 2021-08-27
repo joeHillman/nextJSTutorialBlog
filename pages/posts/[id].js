@@ -1,10 +1,15 @@
 import Layout from '../../components/layout'
+import Head from 'next/head'
 
 import { getAllPostIds, getPostData } from '../../lib/posts'
 
+import Date from '../../components/date'
+
+import utilStyles from '../../styles/utils.module.css'
+
 // static props again can only be called at the page level
 export async function getStaticProps({ params }) {
-  const postData = getPostData(params.id)
+  const postData = await getPostData(params.id)
   return {
     props: {
       postData
@@ -15,6 +20,8 @@ export async function getStaticProps({ params }) {
 export async function getStaticPaths() {
   const paths = getAllPostIds()
   // Paths returns the array of objects with the params/ids contained.
+  // Fallback will manage serving a separate page in leiu of a 404 page.
+  // * https://nextjs.org/learn/basics/dynamic-routes/dynamic-routes-details
   return {
     paths,
     fallback: false
@@ -22,13 +29,18 @@ export async function getStaticPaths() {
 }
 
 export default function Post({ postData }) {
-    return (
-      <Layout>
-        {postData.title}
-        <br />
-        {postData.id}
-        <br />
-        {postData.date}
-      </Layout>
-    )
-  }
+  return (
+    <Layout>
+      <Head>
+        <title>{postData.title}</title>
+      </Head>
+      <article>
+        <h1 className={utilStyles.headingXl}>{postData.title}</h1>
+        <div className={utilStyles.lightText}>
+          <Date dateString={postData.date} />
+        </div>
+        <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
+      </article>
+    </Layout>
+  )
+}
