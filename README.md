@@ -125,5 +125,9 @@ export async function getStaticProps() {
 * Date FNS we've used before, it is handy.
 
 
-### Pick back up here
-* https://nextjs.org/learn/basics/api-routes
+### API Routes
+* Create an API endpoint inside a NextJS App
+* pages/api
+* Never fetch an API Route from getStaticProps/Paths.
+* * The above only run on the server so the endpoint wouldn't be hit.
+* A good case is for handling form input.
